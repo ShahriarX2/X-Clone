@@ -1,9 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
-import Sidebar from "@/components/Sidebar";
-import News from "@/components/News";
-import SessionWrapper from "@/components/SessionWrapper";
-
+import MainLayout from "./MainLayout";
 
 const inter = Inter({
     variable: "--font-inter",
@@ -16,26 +13,12 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-      <SessionWrapper>
-            <html lang="en">
-              <body
-                className={`${inter.variable} antialiased`}
-              >
-              <div className="flex justify-between max-w-6xl mx-auto">
-                  <div className="hidden sm:inline border-r border-gray-200 h-screen p-3">
-                      <Sidebar />
-                  </div>
-                  <div className="w-2xl flex-1">{children}</div>
-                  <div className="lg:flex-col p-3 h-screen border-l border-gray-100 hidden lg:flex w-[24rem]">
-                      <div className="sticky top-0 bg-white py-2">
-                          <input type="text" placeholder="Search" className="bg-gray-100 border border-gray-200 rounded-3xl text-sm w-full px-4 py-2" />
-                      </div>
-                      <News />
-                  </div>
-              </div>
-
-              </body>
-            </html>
-      </SessionWrapper>
+      <html lang="en" className="h-full">
+      <body
+          className={`${inter.variable} antialiased overflow-y-auto h-full`}
+      >
+        <MainLayout>{children}</MainLayout>
+      </body>
+      </html>
   );
 }
